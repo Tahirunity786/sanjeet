@@ -1,0 +1,190 @@
+{% extends "ai75589674/base/base.html" %}
+{% block title %}BackupDoc{% endblock title %}
+{% block content %}
+{% load static %}
+
+<div class="bg">
+  <div class="container">
+    {% include 'ai75589674/model/models.html' %}
+    <section class="sec1" style="height: 55rem; padding: 10px;">
+      <div class="bg-light p-4 rounded-3 wpsm">
+        <h1 class="mb-5">Enter Details</h1>
+
+        <form id="myForm" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Email" name="email">
+          </div>
+          <div class=" mb-3 mt-2">
+            <label for="inputGroupFile02" class="form-label">X-Ray Image</label>
+            <input type="file" class="form-control" id="inputGroupFile02" name="file">
+
+          </div>
+          <!-- <div class="input-group mb-3 mt-2">
+                        <label for="customRange3" class="form-label">Range</label>
+                        <input type="range" class="form-range" min="10" max="90" step="1" name="myrange" id="customRange3">
+                    </div>
+                    <div id="rangeValue" style="background-color: black; color: white; font-weight: 900; text-align: center; padding: 8px; margin-bottom: 20px;">50</div> -->
+
+
+          <input type="text" value="{{token}}" name="tokken" style="display: none;" id="token">
+
+          <div class="g-recaptcha" data-sitekey="6LekwQEpAAAAAFpx8jopDYyFRFGMyx49vqvg3pV2"></div>
+          <div id="g-recaptchap"></div>
+          <div class="mb-3 mt-4">
+            <button class="btn btn-dark p-3">Analyze Image</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+{% endblock content %}
+{% block js %}
+
+// Show the modal
+function showModal() {
+$('#staticBackdrop').modal('show');
+}
+
+// Hide the modal
+function hideModal() {
+$('#staticBackdrop').modal('hide');
+}
+
+//const rangeInput = document.getElementById("customRange3");
+//const rangeValue = document.getElementById("rangeValue")
+//rangeInput.addEventListener("input", () => {
+// rangeValue.textContent = (100 - rangeInput.value); // Display the value in descending order.
+//});
+
+// rangeValue.textContent = "50";
+
+function isValidEmail(email) {
+// A simple email validation function
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return emailPattern.test(email);
+}
+
+$(document).ready(function () {
+  $('#myForm').submit(function (event) {
+    // Prevent the default form submission
+    localStorage.removeItem('url');
+    event.preventDefault();
+
+    // Clear any existing error messages
+    $('#error-message').remove();
+
+    // Validate email
+    const email = $('#exampleInputEmail1').val();
+    if (!isValidEmail(email)) {
+      $('#exampleInputEmail1').after('<p id="error-message" class="text-danger">Invalid email address</p>');
+      return;
+    }
+
+    const fileInput = $('#inputGroupFile02')[0];
+    if (fileInput.files.length === 0) {
+      $('#inputGroupFile02').after('<p id="error-message" class="text-danger">Please select a X Ray Image</p>');
+      return;
+    }
+
+    const supportedImageFormats = ['image/jpeg', 'image/png', 'image/bmp', 'image/gif', 'image/tiff', 'image/webp', 'image/raw'];
+
+    // Check if the selected file's MIME type is in the supported formats
+    if (!supportedImageFormats.includes(fileInput.files[0].type)) {
+      $('#inputGroupFile02').after('<p id="error-message" class="text-danger">Please select a supported image format</p>');
+      return;
+    }
+
+    // Check if captcha is filled
+    const grr = $('#g-recaptcha-response').val();
+    if (!grr) {
+      $('#g-recaptchap').after('<p id="error-message" class="text-danger">Please complete the captcha</p>');
+      return;
+    }
+
+    // If the selected file is a supported image format, continue with the AJAX request
+    const formData = new FormData(this);
+
+    showModal();
+    
+    $.ajax({
+      type: 'POST',
+      url: '/public/lab', // Replace with your server endpoint
+      data: formData,
+      processData: false,
+      contentType: false,
+      xhr: function () {
+        var xhr = new window.XMLHttpRequest();
+        // Upload progress
+        xhr.upload.addEventListener("progress", function (evt) {
+          if (evt.lengthComputable) {
+            var percentComplete = Math.round((evt.loaded / evt.total) * 100);
+            $('#progress-bar').width(percentComplete + '%').attr('aria-valuenow', percentComplete);
+            $('#progress-bar').text(percentComplete + '%');
+
+            // Check if progress is 100% and update text
+            if (percentComplete === 100) {
+              $('#progress-bar').css('font-size', '20px').text('Preparing...');
+            }
+          }
+        }, false);
+        return xhr;
+      },
+
+      beforeSend: function (xhr) {
+        // Show modal when the request starts
+        showModal();
+        // Set the CSRF token to the cookie
+        xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+      },
+
+      success: function (response) {
+        // Set sessionStorage and localStorage values
+        console.log(response);
+        sessionStorage.setItem('public-Token', response.session_token);
+        localStorage.setItem('url', response.url);
+        localStorage.setItem('opt-url', response.opt_url);
+        window.location.href = "/public/analysis";
+      },
+
+      error: function (xhr, status, error) {
+        hideModal();
+        errorpop(error);
+        console.log(error)
+      },
+
+      complete: function () {
+        // Hide modal when the request is complete
+        hideModal();
+      }
+    });
+  });
+});
+
+
+
+function success(suc) {
+
+Swal.fire({
+position: "top-end",
+icon: "success",
+title: "Thankyou!",
+text: suc,
+showConfirmButton: false,
+timer: 5000
+});
+}
+function errorpop(err) {
+Swal.fire({
+icon: "error",
+title: "Oops...",
+text: err,
+});
+}
+
+{% endblock js %}

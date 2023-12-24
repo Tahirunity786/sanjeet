@@ -1,0 +1,66 @@
+{% extends "controler/base/base.html" %}
+{% block title %}BackupDoc | Privacy{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="page-inner">
+    <!--================================-->
+    <!-- Main Wrapper Start -->
+    <!--================================-->
+    <div id="main-wrapper">
+        <!--================================-->
+        <!-- Breadcrumb Start -->
+        <!--================================-->
+        <div class="pageheader pd-y-25">
+            <div class="pd-t-5 pd-b-5">
+                <h1 class="pd-0 mg-0 tx-20 text-overflow">Dashboard</h1>
+            </div>
+            <div class="breadcrumb pd-0 mg-0">
+                <a class="breadcrumb-item" href="/"><i class="icon ion-ios-home-outline"></i> Home</a>
+                <a class="breadcrumb-item" href="javascript:void(0)">Edit About-Page</a>
+
+
+            </div>
+        </div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-bordered pd-y-20" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="ico icon-close"></i></span>
+            </button>
+            <div class="d-sm-flex align-items-center justify-content-start">
+                <i class="icon ion-ios-information alert-icon tx-52 mg-r-20"></i>
+                <div class="mg-t-20 mg-sm-t-0">
+
+                    <p class="mg-b-0 tx-gray">{{ message }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        <form action="/control/privacy_view_data/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container p-2 mb-4">
+                <div class="form-group">
+                    <div class="d-flex justify-content-between align-items-center p-2">
+
+                        <h3 class="mb-2">Edit Title</h3>
+                        <h5><a href="http://www.backupdoc.ai/public/about" target="_blank">Preview</a></h5>
+                    </div>
+                    <input class="form-control" type="text" name="title" placeholder="Title"
+                        style="font-size: 18px; font-weight: bold;" value="{{privacy_data.title}}" id="about_id">
+                </div>
+                <div class="form-group">
+                    <h3 class="mb-2">Upload Image</h3>
+                    <input type="file" name="pfile" class="form-control">
+                </div>
+                <button class="btn btn-primary mb-2 mt-2" type="submit">Upload Image</button>
+                <div class="form-group">
+                    <h3 class="mb-2">Edit Content</h3>
+                    <textarea id="myTextarea" style="width:100%;" name="aboutpage">{{privacy_data.content}}</textarea>
+                </div>
+                <button class="btn btn-primary mt-2" type="submit">Save Changes</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "ai75589674/base/base.html" %}
+{% block title %}BackupDoc{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="bg">
+
+
+        <section class="container" style=" padding-top:150px;padding-bottom: 150px; color: white;">
+            <p class="fs-1 text-center">{{privacy_data.title}}</p>
+            <p class="fs-4">Welcome to Backupdoc.ai</p>
+
+
+            <div style="margin-top: 50px;">
+                {{privacy_data.content | safe}}
+            </div>
+        </section>
+ 
+
+
+</div>
+{% endblock content %}

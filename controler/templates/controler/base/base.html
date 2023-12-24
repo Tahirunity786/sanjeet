@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+
+<head>
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="author" content="" />
+    <!-- Page Title -->
+    <title>{% block title %} {% endblock title%}</title>
+    <!-- Main CSS -->
+    <link href="{% static 'controller/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'controller/assets/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'controller/assets/plugins/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'controller/assets/plugins/ionicons/css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static 'controller/assets/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+    <link href="{% static 'controller/assets/plugins/morris/morris.min.css' %}" rel="stylesheet">
+    <link href="{% static 'controller/assets/css/skin-turquoise.css' %}" rel="stylesheet" id="style-colors">
+    <link href="{% static 'controller/assets/css/app.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'controller/assets/css/style.css' %}" rel="stylesheet" />
+    <!-- Favicon -->
+    <!-- Place the first <script> tag in your HTML's <head> -->
+<script src="https://cdn.tiny.cloud/1/sk6jgqqrrrxo6f2g4o09ex1l2ao896k56ldamsdqdl432yn8/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
+</script>
+
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script> -->
+    <link rel="icon" href="{% static 'controller/assets/images/favicon.ico' %}" type="image/x-icon">
+    
+</head>
+
+<body>
+    <!--================================-->
+    <!-- Page Container Start -->
+    <!--================================-->
+    <div class="page-container">
+        <!--================================-->
+        <!-- Page Sidebar Start -->
+        <!--================================-->
+        <div class="page-sidebar ">
+            <a class="logo-box d-flex justify-content-between align-items-center" href="index.html">
+                <span><img src="{% static 'Assets/asset 0.png' %}" alt="LOGO" width="50" height="50"> </span>
+                <i class="ion-aperture" id="fixed-sidebar-toggle-button"></i>
+                <i class="ion-ios-close-empty" id="sidebar-toggle-button-close"></i>
+            </a>
+            <div class="page-sidebar-inner">
+                <div class="page-sidebar-menu">
+                    <ul class="accordion-menu">
+
+                        <li class="active">
+                            <a href="/control/dashboard" ><i class="icon-speedometer"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="menu-divider mg-y-20-force"></li>
+                        <li class="mg-20-force menu-elements">Pages</li>
+                        <li>
+                            <a href="javascript:void(0);"><i class="fa fa-clone"></i>
+                            <span>Edit Pages</span><i class="accordion-icon fa fa-angle-left"></i></a>
+                            <ul class="sub-menu">
+                               <li><a href="/control/about">About Page</a></li>
+                               <li><a href="/control/privacy">Privacy Page</a></li>
+                              
+                            </ul>
+                         </li>
+                        <li class="menu-divider mg-y-20-force"></li>
+                        <li class="mg-20-force menu-elements">System</li>
+
+                        <li>
+                            <a href="/control/device"><i class="icon-screen-desktop"></i>
+                                <span>Devices</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/control/logout"><i class="icon-logout"></i>
+                                <span>logout</span>
+                            </a>
+                        </li>
+                </div>
+            </div>
+        </div>
+        <!--/ Page Sidebar End -->
+        <!--================================-->
+        <!-- Page Content Start -->
+        <!--================================-->
+        <div class="page-content">
+            <!--================================-->
+            <!-- Page Header Start -->
+            <!--================================-->
+            <div class="page-header">
+                <!-- <div class="search-form">
+                    <form action="#" method="GET">
+                        <div class="input-group">
+                            <input class="form-control search-input" name="search" placeholder="Type something..."
+                                type="text" />
+                            <span class="input-group-btn"><span id="close-search"><i
+                                        class="ion-ios-close-empty"></i></span></span>
+                        </div>
+                    </form>
+                </div> -->
+                <nav class="navbar navbar-default">
+                    <!--================================-->
+                    <!-- Brand and Logo Start -->
+                    <!--================================-->
+                    <div class="navbar-header">
+                        <div class="navbar-brand">
+                            <ul class="list-inline">
+                                <!-- Mobile Toggle and Logo -->
+                                <li class="list-inline-item"><a class="hidden-md hidden-lg" href="javascript:void(0)"
+                                        id="sidebar-toggle-button"><i class="ion-navicon tx-20"></i></a></li>
+                                <!-- PC Toggle and Logo -->
+                                <li class="list-inline-item"><a class="text-muted hidden-xs hidden-sm"
+                                        href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i
+                                            class="ion-navicon tx-20"></i></a></li>
+                                <!-- <li class="list-inline-item mg-l-10"><a class="text-muted" href="javascript:void(0)"
+                                        id="search-button"><i class="ion-ios-search-strong tx-20"></i></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/ Brand and Logo End -->
+                    <!--================================-->
+                    <!-- Header Right Start -->
+                    <!--================================-->
+                    <div class="header-right pull-right">
+                        <ul class="list-inline justify-content-end">
+
+
+                            <li class="list-inline-item">
+                                <a href="https://www.backupdoc.ai" target="_blank"> vist website </a>
+                            </li>
+                            <!-- Profile Dropdown Start -->
+                            <!--================================-->
+                            <li class="list-inline-item dropdown">
+                                <a class="text-muted" href="javascript:void(0)" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    {% if request.user %}
+                                  
+
+                                        <i class="icon-user"></i>
+                                   
+                                    {% endif %}
+                                    
+                                    <span class="select-profile">Hi {{request.user}}</span>
+                                </a>
+                                <ul class="dropdown-menu profile-dropdown shadow-2" style="min-width:12rem !important;">
+                                   
+                                    <li>
+                                        <a href="javascript:void(0)"><i
+                                                class="icon-settings"></i><span>Change Password</span></a>
+                                    </li>
+                                    <li>
+                                        <hr class="hr-style">
+                                    </li>
+                                    
+                                 
+                                    <li>
+                                        <a href="page-singin.html"><i class="icon-logout"></i><span>Sing Out</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Profile Dropdown End -->
+                        </ul>
+                    </div>
+                    <!--/ Header Right End -->
+                </nav>
+            </div>
+            {% block content %} {% endblock content %}
+            <footer class="page-footer bg-gray-100">
+                <div class="pd-y-10 pd-x-25">
+                    <span class="tx-italic text-muted">Copyright&copy; 2023</span>
+                </div>
+            </footer>
+            <!-- Page Footer End -->
+        </div>
+        <!-- / End Page Content -->
+    </div>
+    <!--/ Page Container -->
+    
+    <!--/ Color switcher  End -->
+    <!--================================-->
+    <!-- Scroll To Top Start-->
+    <!--================================-->
+    <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+    <!--/ Scroll To Top End -->
+    <!--================================-->
+    <!-- Footer Script -->
+    <!--================================-->
+    <script src="{% static 'controller/assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/jquery-ui/jquery-ui.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/popper/popper.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/pace/pace.min.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/toastr/toastr.min.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'controller/assets/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'controller/assets/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'controller/assets/js/highlight.min.js' %}"></script>
+    <script src="{% static 'controller/assets/js/adminify.js' %}"></script>
+    <script src="{% static 'controller/assets/js/custom.js' %}"></script>
+    <script>
+        // Toster Notification
+        $(document).ready(function () {
+            setTimeout(function () {
+                toastr.options = {
+                    positionClass: 'toast-top-right',
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1000
+                };
+                toastr.info('Backupdoc', 'Hi, Welcome to Backupdoc Admin');
+
+            }, 150);
+
+        });
+
+        // MORRIS AREA CHART 2
+        var chart = Morris.Area({
+            element: 'area2',
+            data: [{
+                period: 'January 23',
+                dl: 0,
+                up: 0
+            }, {
+                period: 'February 23',
+                dl: 250,
+                up: 0
+            }, {
+                period: 'March 23',
+                dl: 0,
+                up: 250
+            }],
+            gridEnabled: true,
+            gridLineColor: 'rgba(0,0,0,.1)',
+            gridTextColor: '#10171e',
+            gridTextSize: '11px',
+            behaveLikeLine: true,
+            smooth: true,
+            xkey: 'period',
+            ykeys: ['dl', 'up'],
+            labels: ['Old Users', 'New Users'],
+            lineColors: ['#bfbfcf', '#17a2b8'],
+            pointSize: 0,
+            pointStrokeColors: ['#17a2b8'],
+            lineWidth: 0,
+            resize: true,
+            hideHover: 'auto',
+            fillOpacity: 0.9,
+            parseTime: false
+        });
+
+        chart.options.labels.forEach(function (label, i) {
+            var legendItem = $('<div class=\'morris-legend-items\'></div>').text(label);
+            $('<span></span>').css('background-color', chart.options.lineColors[i]).prependTo(legendItem);
+            $('#area-legend').append(legendItem)
+        })
+
+    </script>
+</body>
+
+</html>

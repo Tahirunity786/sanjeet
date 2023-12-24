@@ -1,0 +1,149 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    --bs-navbar-padding-y: 0rem;
+}
+
+.navbar-brand {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+/* Adjust the position and spacing of the contact section */
+.c-pg {
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    max-width: 60rem;
+    color: white;
+    position: relative;
+    padding: 20px;
+    max-height: 60vh;
+}
+
+.fs-m {
+    font-size: 3.5rem;
+}
+
+.cp-g {
+    margin-top: 50px;
+    background-color: white;
+    padding: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.in-cpg,
+.t-cpg {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-bottom 0.3s ease;
+    resize: none;
+}
+
+.in-cpg:hover,
+.in-cpg:focus,
+.t-cpg:hover,
+.t-cpg:focus {
+    border-bottom: 3px solid black;
+}
+
+/* Position the submit button on small screens */
+.s-btn {
+    width: 100%;
+    max-width: 250px;
+    height: 60px;
+    position: relative;
+    top: 0;
+    /* Reset the top position */
+    margin-top: 20px;
+    /* Add margin to create separation on small screens*/
+}
+
+/* Adjust the position of the footer */
+footer {
+    position: sticky;
+    z-index: 100px;
+    /* margin-top: 40px; */
+    top: auto;
+    /* Reset the top position for the footer */
+}
+
+.main {
+    height: 63rem;
+    background-image: url('/static/Assets/backgrounf.webp');
+    background-color: #00000099;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Media queries for adjustments */
+@media (min-width: 768px) and (max-width: 1000px) {
+
+    /* For tablets to small desktops */
+    .fs-m {
+        font-size: 2.5rem;
+    }
+    .main{
+        height: 87rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+
+    /* For mobile to tablet */
+    .fs-m {
+        font-size: 2rem;
+    }
+
+    .c-pg {
+        padding: 15px;
+    }
+
+    /* Adjust the position of the submit button on smaller screens */
+    .s-btn {
+        top: 0;
+        /* Reset the top position */
+        margin-top: 20px;
+        /* Add margin to create separation on smaller screens */
+    }
+    .main{
+        height: 87rem;
+    }
+    /* Further adjust the position of the footer on smaller screens */
+    
+}
+
+@media (max-width: 576px) {
+
+    /* For smaller mobile devices */
+    .fs-m {
+        font-size: 1.5rem;
+    }
+
+    .cp-g {
+        padding: 20px;
+    }
+    .main{
+        height: 82rem;
+    }
+    /* Further adjust the position of the submit button on even smaller screens */
+    .s-btn {
+        top: 0;
+        /* Reset the top position */
+        margin-top: 20px;
+        /* Add margin to create separation on even smaller screens */
+    }
+
+}

@@ -1,0 +1,17 @@
+{% extends "ai75589674/base/base.html" %}
+{% block title %}Backupdoc | About{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="bg">
+    <div class="container" style="padding-bottom: 150px; color: white;">
+
+        <section class="container s1">
+
+            <h4 class="mt-2">{{about_data.title | safe}}</h4>
+            <div class="mt-3">
+                {{ about_data.content |safe }}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock content %}

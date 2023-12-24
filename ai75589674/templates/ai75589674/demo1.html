@@ -1,0 +1,83 @@
+{% extends "ai75589674/base/base.html" %}
+{% block title %}BackupDoc | Demo{% endblock title %}
+{% block content %}
+{% load static %}
+
+<div class="bg">
+  <div class="container">
+    <h1 class="mbm">Analysis</h1>
+    {% include 'ai75589674/model/models.html' %}
+    <section class="container sec3 p-2">
+      <div class="row bg-dark rounded p-2" style="height: auto;">
+        <div class="col-lg-8">
+          <div class="container">
+
+            <img src="{% static 'Assets/data-2.jpeg' %}" alt="Image" class="img-fluid">
+
+
+          </div>
+        </div>
+        <div class="col-lg-4 p-5">
+          <div class="btm">
+            <h5 class="text-light mb-2">Demo Analysis</h5>
+            <div id="DEMO1">
+              {% csrf_token %}
+              <div class="pt-5">
+               
+                <div class="g-recaptcha" data-sitekey="6LekwQEpAAAAAFpx8jopDYyFRFGMyx49vqvg3pV2">
+                </div>
+                <div id="g-recaptchap"></div>
+                <div class="w-100 mt-4">
+                  <button id="generatepdf1" class="btn btn-light rounded-pill p-3 w-100" style="font-weight: bold;">
+                    Analyze Image</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+</div>
+
+{% endblock content %}
+{% block js %}
+
+// Analyze Image button click event
+document.getElementById('generatepdf1').addEventListener('click', function () {
+  // Hide any previous error messages
+  $('#error-message').remove();
+
+  // Check if the captcha has been completed
+  if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse()) {
+    $('#g-recaptchap').after('<p id="error-message" class="text-danger">Please complete the captcha</p>');
+    return;
+  }
+
+  // Show the modal and other processing steps
+  $('#staticBackdrop').modal('show');
+
+  // Update progress bar and handle redirection as before
+  let progressBar = document.getElementById('progress-bar');
+  let width = 0;
+  let interval = setInterval(function () {
+    width += 10;
+    progressBar.style.width = width + '%';
+    progressBar.setAttribute('aria-valuenow', width);
+
+    if (width >= 100) {
+      clearInterval(interval);
+      setTimeout(function () {
+        $('#staticBackdrop').modal('hide');
+        window.location.href = '/public/demo';
+      }, 1000);
+    }
+  }, 1000);
+});
+
+
+
+{% endblock js %}

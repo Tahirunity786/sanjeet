@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="description" content="">
+	  <meta name="keyword" content="">
+	  <meta name="author"  content=""/>
+      <!-- Page Title -->
+      <title>Sing In </title>
+      <!-- Main CSS -->			
+      <link href="{% static 'controller/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+      <link href="{% static 'controller/assets/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet"/>
+      <link href="{% static 'controller/assets/plugins/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+      <link href="{% static 'controller/assets/plugins/ionicons/css/ionicons.css' %}" rel="stylesheet">
+      <link href="{% static 'controller/assets/css/skin-turquoise.css' %}" rel="stylesheet" id="style-colors">
+      <link href="{% static 'controller/assets/css/app.min.css' %}" rel="stylesheet"/>
+      <link href="{% static 'controller/assets/css/style.css' %}" rel="stylesheet"/>
+      <!-- Favicon -->	
+      <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+     
+   </head>
+   <body class="card-img-2">
+      <!--================================-->
+      <!-- User Singin Start -->
+      <!--================================-->			
+      <div class="mg-y-120">
+         <div class="card mx-auto wd-300 text-center pd-25 shadow-3">
+            <h4 class="card-title mt-3 text-center">Backupdoc</h4>
+            <p class="text-center">Sing in to your account</p>
+           
+            <form method="post" action="/control/login">
+               {% csrf_token %}
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text pd-x-9 text-muted"> <i class="fa fa-user"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="username" type="text" name="username">
+               </div>
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text text-muted"> <i class="fa fa-lock"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="Enter password" type="password" name="password">
+               </div>
+               
+               <div class="form-group">
+                  <button type="submit" class="btn btn-info btn-block tx-13 hover-white"> Login </button>
+               </div>
+               
+            </form>
+         </div>
+      </div>
+      <!--/ User Singin End -->
+      <!--================================-->
+      <!-- Footer Script -->
+      <!--================================-->	
+      <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/jquery-ui/jquery-ui.js' %}"></script>
+      <script src="{% static 'assets/plugins/popper/popper.js' %}"></script>
+      <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/pace/pace.min.js' %}"></script>
+      <script src="{% static 'assets/js/jquery.slimscroll.min.js' %}"></script>
+      <script src="{% static 'assets/js/custom.js' %}"></script>
+   </body>
+</html>

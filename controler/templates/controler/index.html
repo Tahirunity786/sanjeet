@@ -1,0 +1,135 @@
+{% extends "controler/base/base.html" %}
+{% block title %}BackupDoc | Admin{% endblock title %}
+{% block content %}
+{% load static %}
+<!--================================-->
+<!-- Page Inner Start -->
+<!--================================-->
+<div class="page-inner">
+   <!--================================-->
+   <!-- Main Wrapper Start -->
+   <!--================================-->
+   <div id="main-wrapper">
+      <!--================================-->
+      <!-- Breadcrumb Start -->
+      <!--================================-->
+      <div class="pageheader pd-y-25">
+         <div class="pd-t-5 pd-b-5">
+            <h1 class="pd-0 mg-0 tx-20 text-overflow">Dashboard</h1>
+         </div>
+         <div class="breadcrumb pd-0 mg-0">
+            <a class="breadcrumb-item" href="/"><i class="icon ion-ios-home-outline"></i> Home</a>
+            <a class="breadcrumb-item" href="javascript:void(0)">Dashboard</a>
+
+         </div>
+      </div>
+      <!--/ Breadcrumb End -->
+      <!--================================-->
+      <!-- Count Card Start -->
+      <!--================================-->
+      <div class="row clearfix">
+         <div class="col-xl-3 col-md-6">
+            <div class="card bg-teal mb-4 shadow-1">
+               <div class="card-body card-img">
+                  <div class="card-icon">
+                     {% comment %} <i class="ion-ios-analytics float-right"></i> {% endcomment %}
+                  </div>
+                  <div class="text-white">
+                     <h6 class="mb-0 text-uppercase tx-13">Old Users</h6>
+                     <h4 class="mg-b-40">{{total_old_users}}</h4>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-3 col-md-6">
+            <div class="card bg-teal mb-4 shadow-1">
+               <div class="card-body card-img">
+                  <div class="card-icon">
+                     {% comment %} <i class="ion-ios-analytics float-right"></i> {% endcomment %}
+                  </div>
+                  <div class="text-white">
+                     <h6 class="mb-0 text-uppercase tx-13">New Users</h6>
+                     <h4 class="mg-b-40">{{total_new_users}}</h4>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-3-6 col-md-6">
+            <div class="card bg-primary mb-4 shadow-1">
+               <div class="card-body card-img">
+                  <div class="card-icon">
+                     {% comment %} <i class="ion-ios-lightbulb-outline float-right"></i> {% endcomment %}
+                  </div>
+                  <div class="text-white">
+                     <h6 class="mb-0 text-uppercase tx-13">Event Count</h6>
+                     <h4 class="mg-b-40">{{total_users}}</h4>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!--/ Count Card End -->
+         <!--================================-->
+         <!-- Statistic Start -->
+         <!--================================-->
+         <div class="col-xl-6-12 col-md-12">
+            <div class="row no-gutters d-block clearfix">
+               <div class="card mg-t-5 mg-b-30 shadow-1">
+                  <div class="card-header with-elements">
+                     <h4 class="card-header-title">
+                        Statistics
+                     </h4>
+                     <div class="card-header-btn">
+                        <a href="javascript:void(0)" data-toggle="collapse" class="btn btn-info"
+                           data-target="#collapse1" aria-expanded="true"><i class="ion-ios-arrow-down"></i></a>
+                        <a href="javascript:void(0)" data-toggle="refresh" class="btn btn-warning"><i
+                              class="ion-android-refresh"></i></a>
+                        <a href="javascript:void(0)" data-toggle="expand" class="btn btn-success"><i
+                              class="ion-android-expand"></i></a>
+                        {% comment %} <a href="javascript:void(0)" data-toggle="remove" class="btn btn-danger"><i
+                              class="ion-ios-trash-outline"></i></a> {% endcomment %}
+                     </div>
+                  </div>
+                  <div class="row no-gutters row-bordered collapse show" id="collapse1" style="width: 100%;">
+                     <div class="col-md-3">
+                        <div class="card-body">
+                           <div class="row mg-t-20">
+                              <div class="col-6 col-xl-6 text-muted mb-3">Old Users</div>
+                              <div class="col-6 col-xl-6 mb-3">
+                                 <span class="text-big">{{total_old_users}}</span>
+                        
+                              </div>
+                              <div class="col-6 col-xl-6 text-muted mb-3">New Users</div>
+                              <div class="col-6 col-xl-6 mb-3">
+                                 <span class="text-big">{{total_new_users}}</span>
+                                 
+                              </div>
+                              <div class="col-6 col-xl-6 text-muted mb-3">Total Event</div>
+                              <div class="col-6 col-xl-6 mb-3">
+                                 <span class="text-big">{{total_users}}</span>
+                              </div>
+                              <div class="col-6 col-xl-6 text-muted mb-3" style="visibility: hidden;">Page views</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-9">
+                        <div class="card-body">
+                           <div class="clearfix">
+                              <div id="area-legend" class="text-center"></div>
+                              <div id="area2" style="height:450px; width: 100%;"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+
+{% endblock content%}

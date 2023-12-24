@@ -1,0 +1,116 @@
+{% extends "ai75589674/base/base.html" %}
+{% block title %}BackupDoc{% endblock title %}
+{% block content %}
+{% load static %}
+
+<div class="bg">
+    <div class="container">
+        <h1 class="mbm">Analysis</h1>
+        <section class="container sec3 p-2">
+            <div class="row bg-dark rounded p-2" style="height: auto;">
+                <div class="col-lg-8">
+
+                    <div class="container minip">
+                        <img id="processedImage" alt="Image" class="img-fluid">
+                        {% comment %}Preview image {% endcomment %}
+                        <img src="{% static 'Assets/assest 1.png' %}" alt="Image" id="pImage" class="img-fluid">
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4 pa-my">
+                    <div class="btm">
+
+                        <div class="row rounded mb-4"
+                            style="height: 100px; width: 100%; background-color: white; padding: 33px;">
+                            <div class="col-lg-4">
+
+                                <input type="checkbox" class="toggle" id="checkboxm" checked>
+                            </div>
+                            <div class="col-lg-4">
+                                <p id="dyn">Analyzed</p>
+                            </div>
+                        </div>
+                        <h3 class="text-light mb-2">Generate Report</h3>
+
+                        <form id="form2" method="post">
+                            {% csrf_token %}
+                            <div class="pt-5">
+                                <div class="g-recaptcha" data-sitekey="6LekwQEpAAAAAFpx8jopDYyFRFGMyx49vqvg3pV2">
+                                </div>
+                                <div id="g-recaptchap"></div>
+                                <!-- <div class="mt-5 mb-3">
+                                    <label for="comeanalyze" class="form-label text-light">Adjust
+                                        Sensitivity</label>
+                                    <input type="range" class="form-range mb-3" min="10" max="90" step="1" value="50"
+                                        id="comeanalyze" name="myrange">
+                                    <div id="showanalyze"
+                                        style="color: black; height: 3rem; background-color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                        0
+                                    </div>
+
+                                </div> -->
+                                <div class="w-75 mt-4">
+                                    <button id="generatepdf" class="btn btn-light rounded-pill p-3 w-100"
+                                        style="font-weight: bold;"> Generate Report</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+{% endblock content %}
+{% block js %}
+// Use DOMContentLoaded event to ensure the script runs after the HTML content has been loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the checkbox and text elements
+    var checkbox = document.getElementById('checkboxm');
+    var dynText = document.getElementById('dyn');
+
+    // Set the initial state based on the checkbox status
+    if (!checkbox.checked) {
+        dynText.textContent = 'Original Text';
+    }
+
+    // Add an event listener to the checkbox
+    checkbox.addEventListener('change', function() {
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            // If checked, update the text to 'analyzed'
+            dynText.textContent = 'Analyzed';
+        } else {
+            // If unchecked, update the text to 'original text'
+            dynText.textContent = 'Original';
+        }
+    });
+});
+
+const imageUrl = localStorage.getItem("url");
+const optImageUrl = localStorage.getItem("opt-url");
+
+// Set the initial image source based on the checkbox state
+const checkbox = document.getElementById("checkboxm");
+const image = document.getElementById("processedImage");
+
+function updateImageSource() {
+  if (checkbox.checked) {
+    // If checkbox is checked, use the "url" key
+    image.src = imageUrl; // Provide a default URL if necessary
+  } else {
+    // If checkbox is unchecked, use the "opt-url" key
+    image.src = optImageUrl; // Provide a default URL if necessary
+  }
+}
+
+// Add an event listener to the checkbox to update the image source
+checkbox.addEventListener("change", updateImageSource);
+
+// Set the initial image source
+updateImageSource();
+
+{% endblock js %}

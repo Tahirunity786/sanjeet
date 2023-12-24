@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="BackUpDoc: AI-Powered Dental Diagnosis Platform for Precise Teeth Analysis and Treatment Recommendations.">
+    <meta name="keywords" content="Dental, AI, backupdoc, BackUpDoc, BACKUPDOC, BackUpDoc.Ai">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="canonical" href="https://www.backupdoc.ai/" />
+    <meta property="og:title" content="BackUpDoc: AI-Powered Dental Diagnosis Platform" />
+    <meta property="og:description"
+        content="BackUpDoc: AI-Powered Dental Diagnosis Platform for Precise Teeth Analysis and Treatment Recommendations." />
+    <meta property="og:image" content="{% static 'Assets/asset 0.png' %}" />
+    <meta property="og:url" content="https://www.backupdoc.ai/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="30 days" />
+    <meta name="author" content="BackupDoc.ai" />
+    {% load compress %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+    {% endcompress %}
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+
+<body>
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100" style="z-index: 100">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex pt-2" href="/">
+                <img src="{% static 'Assets/asset 0.png' %}" alt="Logo" class="d-inline-block " />
+                <div class="m-3">
+                    <span class="fs-4">BackupDoc</span><br /><span class="d-inline-block">AI</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse p-3" id="navbarSupportedContent">
+                <ul class="navbar-nav me-my mb-2 w-my justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/public/up-handle">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/public/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/public/privacy">Privacy</a>
+                    </li>
+                </ul>
+                <div>
+
+                    <a href="/public/contact" class="btn btn-primary rounded-pill op-l p-4">
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        {% block content %}{% endblock content %}
+
+    </main>
+    <footer class="bg-dark text-light">
+        <div class="container-fluid pf-my">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12 mb-5 ps-5">
+                    <h4 class="mb-3">Address</h4>
+                    <ul class="list-unstyled mb-5">
+
+                        <li class="fs-5 mb-2 f-col">AF 30, Aditya CIty Center</li>
+                        <li class="fs-5 mb-2 f-col">Indirapuram</li>
+                        <li class="fs-5 mb-2 f-col">Ghaziabad</li>
+                        <li class="fs-5 mb-2 f-col">201012</li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 mb-5 ps-5">
+                    <h4 class="mb-3">Be in the know</h4>
+                    <div class="pe-5 mb-5">
+                        <p class="fs-5 f-col">Join our mailing list to receive the latest updates, insights, and
+                            exclusive content directly from Backupdoc.ai. Be the first to know about our
+                            advancements, tips, and offers that can enhance your experience with our Real-time
+                            Pathology Detection System</p>
+                    </div>
+
+                    <div class="usd pe-5">
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Email">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4" style="margin-top: 30px;">
+                                    <button class="btn btn-light rounded-pill w-100 p-2">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12 mb-5 ps-5">
+                    <h4 class="mb-3">Menu</h4>
+                    <ul class="list-unstyled mb-5">
+                        <li class="fs-f-my mb-2"><a class="b-a" href="/">Home</a></li>
+                        <li class="fs-f-my mb-2"><a class="b-a" href="/public/up-handle">Service</a></li>
+                        <li class="fs-f-my mb-2"><a class="b-a" href="/public/about">About</a></li>
+                        <li class="fs-f-my mb-2"><a class="b-a" href="/public/contact">Contact</a></li>
+                        <li class="fs-f-my mb-2"><a class="b-a" href="/public/privacy">Privacy</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row h">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="fs-5">© 2023 by BackupDoc. <br> All Right Reserved <a href="/public/privacy">Privacy and
+                            Terms</a></div>
+
+                </div>
+            </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/vanilla-tilt.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        {% block js %} {% endblock js %}
+    </script>
+
+</body>
+
+</html>
